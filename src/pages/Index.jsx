@@ -1,17 +1,48 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, VStack, Heading, Text, SimpleGrid, Image, Button } from "@chakra-ui/react";
 
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+const products = [
+  {
+    id: 1,
+    name: "Smartphone",
+    description: "Latest model with advanced features",
+    price: "$699",
+    imageUrl: "/images/smartphone.jpg",
+  },
+  {
+    id: 2,
+    name: "Laptop",
+    description: "High performance laptop for professionals",
+    price: "$999",
+    imageUrl: "/images/laptop.jpg",
+  },
+  {
+    id: 3,
+    name: "Smartwatch",
+    description: "Stylish smartwatch with health tracking",
+    price: "$199",
+    imageUrl: "/images/smartwatch.jpg",
+  },
+];
 
 const Index = () => {
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
+    <Container maxW="container.xl" py={8}>
+      <VStack spacing={8}>
+        <Heading as="h1" size="2xl">Welcome to Electronics Store</Heading>
+        <Text fontSize="lg">Find the best electronics products here</Text>
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
+          {products.map((product) => (
+            <Box key={product.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={5}>
+              <Image src={product.imageUrl} alt={product.name} boxSize="200px" objectFit="cover" mx="auto" />
+              <VStack spacing={4} mt={4}>
+                <Heading as="h3" size="md">{product.name}</Heading>
+                <Text>{product.description}</Text>
+                <Text fontWeight="bold">{product.price}</Text>
+                <Button colorScheme="teal">Add to Cart</Button>
+              </VStack>
+            </Box>
+          ))}
+        </SimpleGrid>
       </VStack>
     </Container>
   );
